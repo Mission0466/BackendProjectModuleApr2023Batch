@@ -5,6 +5,9 @@ import dev_kc.productsservices.dtos.CreateProductRequestDto;
 import dev_kc.productsservices.dtos.UpdateProductDto;
 import dev_kc.productsservices.models.Product;
 import dev_kc.productsservices.services.ProductService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -54,6 +57,12 @@ public class ProductController {
         return productService.getProducts();
     }
 
+//    @GetMapping("/products")
+//    public ResponseEntity<List<Product>> getAllProduct(){
+//        List<Product> products = productService.getProducts();
+//        ResponseEntity<List<Product>> response = new ResponseEntity<>(products, HttpStatus.FOUND);
+//        return response;
+//    }
     @GetMapping("/products/categories")
     public String[] getAllCategories(){
        return restTemplate.getForObject("https://fakestoreapi.com/products/categories", String[].class);
@@ -79,7 +88,7 @@ public class ProductController {
          productService.deleteProduct(productId);
     }
 
-    @GetMapping("/products/{category}") // to get the product details we are using getmapping annotation come and use this method
+    @GetMapping("/products/category/{category}") // to get the product details we are using getmapping annotation come and use this method
     public List<Product> getProductByCategory(@PathVariable("category") String category){   // in the request URL there is a parameter called id so get the value and pass into the productId therefore using PathVariable annotation
         return productService.getProductByCategory(category);
     }
