@@ -4,6 +4,7 @@ import dev_kc.productsservices.dtos.FakeStoreProductDto;
 import dev_kc.productsservices.dtos.UpdateProductDto;
 import dev_kc.productsservices.models.AllCategories;
 import dev_kc.productsservices.models.Product;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -37,6 +38,8 @@ public class FakeStoreProductService implements ProductService{
         }
         return productList;
     }
+
+
 
 
 
@@ -101,7 +104,7 @@ public class FakeStoreProductService implements ProductService{
         List<Product> productList = new ArrayList<>();
 
 
-        FakeStoreProductDto[] fakeStoreProductDtos = restTemplate.getForObject("https://fakestoreapi.com/products/" + category, FakeStoreProductDto[].class);
+        FakeStoreProductDto[] fakeStoreProductDtos = restTemplate.getForObject("https://fakestoreapi.com/products/category/" + category, FakeStoreProductDto[].class);
         for(int i=0; i< fakeStoreProductDtos.length; i++ ){
             productList.add(fakeStoreProductDtos[i].toProduct());
         }
