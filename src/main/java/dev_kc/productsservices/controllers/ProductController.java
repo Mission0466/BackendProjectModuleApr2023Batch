@@ -5,6 +5,7 @@ import dev_kc.productsservices.dtos.CreateProductRequestDto;
 import dev_kc.productsservices.dtos.UpdateProductDto;
 import dev_kc.productsservices.models.Product;
 import dev_kc.productsservices.services.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -48,8 +49,8 @@ public class ProductController {
         );
     }
 
-    @GetMapping("/products/{id}") // to get the product details we are using getmapping annotation come and use this method
-    public Product getProductDetails(@PathVariable("id") Long productId){   // in the request URL there is a parameter called id so get the value and pass into the productId therefore using PathVariable annotation
+    @GetMapping("/products/{id}")
+    public Product getProductDetails(@PathVariable("id") Long productId){
         return productService.getSingleProduct(productId);
     }
 

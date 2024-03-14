@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,5 +23,5 @@ public class Category extends BaseModel {
     private String title;
     @OneToMany(mappedBy = "category", cascade = {CascadeType.REMOVE})
     @JsonIgnore
-    private ArrayList<Product> products;
+    private List<Product> products;
 }
