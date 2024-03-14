@@ -1,6 +1,10 @@
 package dev_kc.productsservices.models;
 
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,14 +14,15 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product {
+@Entity
+public class Product extends BaseModel {
 
-    private Long id;
     private String title;
     private String description;
     private double price;
     private String imageURL;
-    private Category category;
+    @ManyToOne(cascade = {CascadeType.PERSIST})
+    private Category category;   // here id of the category table will be in product table
 
 //    public Long getId() {
 //        return id;

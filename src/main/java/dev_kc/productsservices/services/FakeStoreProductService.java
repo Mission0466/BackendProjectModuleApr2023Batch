@@ -12,10 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Service
+@Service("fakeStoreProdcutService")
 public class FakeStoreProductService implements ProductService{
 
-    private RestTemplate restTemplate;
+     RestTemplate restTemplate;
+
 
     public FakeStoreProductService(RestTemplate restTemplate){
         this.restTemplate = restTemplate;

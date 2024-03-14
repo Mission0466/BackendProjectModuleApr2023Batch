@@ -5,6 +5,7 @@ import dev_kc.productsservices.dtos.CreateProductRequestDto;
 import dev_kc.productsservices.dtos.UpdateProductDto;
 import dev_kc.productsservices.models.Product;
 import dev_kc.productsservices.services.ProductService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class ProductController {
 
     private RestTemplate restTemplate;
 
-    public ProductController(ProductService productService, RestTemplate restTemplate){  // constructor
+    public ProductController(@Qualifier("selfProductService") ProductService productService, RestTemplate restTemplate){  // constructor
 
         this.productService = productService;
         this.restTemplate = restTemplate;
@@ -54,6 +55,7 @@ public class ProductController {
 
     @GetMapping("/products")
     public List<Product> getAllProduct(){
+
         return productService.getProducts();
     }
 
